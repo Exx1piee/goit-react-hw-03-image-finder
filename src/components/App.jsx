@@ -4,6 +4,7 @@ import { ImageGallery } from './ImageGallery/imagegallery';
 import { fetchImage } from 'FetchApi';
 import { Loader } from './Loader/loader';
 import { Button } from './butt/button';
+
 import { Modal } from './Modal/modal';
 
 export class App extends Component {

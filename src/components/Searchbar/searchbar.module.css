@@ -8,8 +8,8 @@
   align-items: center;
   min-height: 64px;
   padding: 12px 24px;
-  color: #fff;
-  background-color: #3f51b5;
+  color: #989898;
+  background-color: #4b4d54;
 }
 
 .form{
@@ -17,7 +17,7 @@
   align-items: center;
   width: 100%;
   max-width: 600px;
-  background-color: #fff;
+  background-color: #bab9b9;
   border-radius: 3px;
   overflow: hidden;
 }

@@ -1,30 +1,47 @@
 import React, { Component } from 'react';
-import css from './modal.module.css';
+import styles from './modal.module.css';
 
-export class Modal extends Component {
-  handleEsc = e => {
-    if (e.code === 'Escape') this.props.onCloseModal();
-  };
-
+class Modal extends Component {
   componentDidMount() {
-    document.addEventListener('keydown', this.handleEsc);
-  }
+      document.addEventListener('keydown', this.handleKeyDown)
+  };
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleEsc);
-  }
-
-  handleImageClick = e => {
-    e.stopPropagation();
+      document.removeEventListener('keydown', this.handleKeyDown)
   };
+
+  handleKeyDown = (event) => {
+      if (event.keyCode === 27) {
+          this.props.onClose()
+      }
+  };
+
+  handleClose = () => {
+      this.props.onClose();
+  };
+
+  handleImageClick = () => {
+      const { image, onImageClick } = this.props;
+      onImageClick(image);
+  };
+
   render() {
-    const { item, onCloseModal } = this.props;
-    return (
-      <div className={css.overlay} onClick={onCloseModal}>
-        <div>
-          <img src={item} alt="" onClick={this.handleImageClick} />
-        </div>
-      </div>
-    );
+      const { image } = this.props;
+
+      return (
+          <div
+              className={styles.overlay}
+              onClick={this.handleClose}>
+              <div className={styles.modal}>
+                  <img
+                      className={styles.img}
+                      src={image.srcLarge}
+                      alt={image.alt}
+                      onClick={this.handleImageClick}/>
+              </div>
+          </div>
+      )
   }
 }
+
+export default Modal;

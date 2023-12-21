@@ -1,18 +1,26 @@
-import React from 'react';
-import { ImageGalleryItem } from 'components/ImageGalleryItem/imagegalleryitem';
-import css from './imagegallery.module.css';
-import { nanoid } from 'nanoid';
+import React, { Component } from 'react';
+import ImageGalleryItem  from 'components/ImageGalleryItem/imagegalleryitem';
+import styles from './imagegallery.module.css';
 
-export const ImageGallery = ({ items, onImageClick }) => {
-  return (
-    <ul className={css.gallery}>
-      {items.map(item => (
-        <ImageGalleryItem
-          key={nanoid()}
-          hit={item}
-          onImageClick={onImageClick}
-        />
-      ))}
-    </ul>
-  );
-};
+class ImageGallery extends Component {
+  shouldComponentUpdate(nextProps) {
+      return nextProps.images !== this.props.images;
+  }
+
+  render() {
+      const { images, onImageClick } = this.props;
+
+      return (
+          <ul className={styles.list}>
+              {images.map((image) => (
+                  <ImageGalleryItem
+                      key={image.id}
+                      image={image}
+                      onImageClick={onImageClick} />
+              ))}
+          </ul>
+      )
+  }
+}
+
+export default ImageGallery;

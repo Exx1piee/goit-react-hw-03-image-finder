@@ -1,10 +1,21 @@
-import React from 'react';
-import css from './button.module.css';
+import React ,  { Component } from 'react';
+import styles from './button.module.css';
+class Button extends Component {
+  handleClick = (event) => {
+      event.preventDefault();
+      const { onClick } = this.props;
+      onClick();
+  }
 
-export const Button = ({ onClick }) => {
-  return (
-    <button className={css.loadBtn} onClick={onClick}>
-      Load more{' '}
-    </button>
-  );
-};
+  render() {
+      return (
+          <button
+              className={styles.button}
+              onClick={this.handleClick}>
+              Load More
+          </button>
+      )
+  }
+}
+
+export default Button;
